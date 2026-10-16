@@ -22,6 +22,9 @@
     .footer-rail{margin-top:auto;display:flex;align-items:center;gap:19px;color:#FFFFFF;font-size:42px;font-weight:900;letter-spacing:.015em}
     .footer-rail::before{content:"";width:62px;height:6px;background:#F25A00;border-radius:5px}
     .product{display:block;width:100%;height:100%;object-fit:contain;filter:none;mix-blend-mode:normal}
+    .product-tile img[data-product="01"],.versus-card img[data-product="01"]{transform:scale(.86)}
+    .product-tile img[data-product="02"],.versus-card img[data-product="02"]{transform:scale(1.25)}
+    .product-tile img[data-product="04"]{transform:scale(1.18)}
 
     /* 01 — hook */
     #scene-1{background:#07212A}
@@ -45,9 +48,10 @@
     .need-card::before{content:"";position:absolute;left:0;top:0;width:100%;height:12px;background:#F25A00}
     .need-photo{height:290px;flex:0 0 290px;display:flex;justify-content:center;align-items:center;overflow:hidden}
     .need-photo img{width:100%;height:100%;object-fit:contain;object-position:center}
-    .compact-graphic{flex-direction:column;gap:13px;border-radius:22px;background:radial-gradient(circle at 65% 24%,#4A7D76,#0C3D4D 72%);color:#fff}
-    .compact-graphic strong{font-size:49px;letter-spacing:-.06em;line-height:1;font-weight:900}
-    .compact-graphic span{font-size:22px;font-weight:800;letter-spacing:.10em;color:#E6F2E8}
+    .need-photo img[data-product="01"]{transform:scale(.86)}
+    .need-photo img[data-product="02"]{object-fit:cover}
+    .need-photo img[data-product="03"]{transform:scale(.90)}
+    .need-photo img[data-product="04"]{transform:scale(1.24)}
     .need-name{font-size:30px;font-weight:900;line-height:1.02;letter-spacing:-.025em;min-height:62px}
     .need-spec{font-size:52px;line-height:1;font-weight:900;color:#003B4D;margin:7px 0}
     .need-desc{font-size:24px;line-height:1.1;color:#315560;font-weight:600}
@@ -73,12 +77,12 @@
     .scene-four-head{margin-top:15px;display:flex;flex-direction:column;gap:17px}
     .scene-four-head .title{font-size:74px}
     .lineup{display:flex;gap:14px;margin:27px 0 5px;height:230px;flex:0 0 230px}
-    .lineup-card{height:210px;width:25%;background:#fff;border-radius:25px;padding:7px;box-shadow:0 14px 30px #00182055}
+    .lineup-card{height:210px;width:25%;background:#fff;border-radius:25px;padding:7px;box-shadow:0 14px 30px #00182055;overflow:hidden}
     .lineup-card:nth-child(2){transform:translateY(20px)}
     .lineup-card:nth-child(4){transform:translateY(20px)}
     .lineup-card img{width:100%;height:100%;object-fit:contain}
-    .lineup-card.compact-graphic{display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 65% 24%,#4A7D76,#0C3D4D 72%);color:#fff}
-    .lineup-card.compact-graphic strong{font-size:27px;letter-spacing:-.04em}
+    .lineup-card img[data-product="01"]{transform:scale(.86)}
+    .lineup-card img[data-product="02"]{transform:scale(1.25)}
     .statement{font-size:42px;line-height:1.11;font-weight:800;padding:25px 28px;border-radius:23px;background:#003B4D;border:2px solid #5B9A9A}
     .statement strong{color:#F6A800}
     .steps-card{background:#fff;color:#07182A;border-radius:32px;padding:30px 32px;margin-top:3px;box-shadow:0 22px 45px #00182055}
@@ -98,9 +102,9 @@
     <div class="scene-inner">
       <div class="scene-one-title"><div class="eyebrow">Guía rápida para explorar</div><h1 class="title">¿TODOS LOS BINOCULARES SON PARA LO MISMO<span class="question-mark">?</span></h1></div>
       <div class="tabletop" data-layout-ignore>
-        <div class="product-tile tile-one"><img class="product" src="assets/products/01-8x42.png" alt="Binocular Simmons"></div>
-        <div class="product-tile tile-two"><img class="product" src="assets/products/02-10x42.png" alt="Binocular Vortex"></div>
-        <div class="product-tile tile-three"><img class="product" src="assets/products/04-Leica.jpg" alt="Binocular Leica"></div>
+        <div class="product-tile tile-one"><img class="product" data-product="01" src="assets/products/01-8x42.png" alt="Binocular Simmons"></div>
+        <div class="product-tile tile-two"><img class="product" data-product="02" src="assets/products/02-10x42.png" alt="Binocular Vortex"></div>
+        <div class="product-tile tile-three"><img class="product" data-product="04" src="assets/products/04-Leica.jpg" alt="Binocular Leica"></div>
       </div>
       <div class="answer-tag">NO EXACTAMENTE.</div>
       <p class="axis">No existe uno perfecto para todos. <strong>Existe el que mejor se adapta a ti.</strong></p>
@@ -112,10 +116,10 @@
     <div class="scene-inner">
       <div class="scene-two-head"><div class="eyebrow">Distintas formas de mirar</div><h2 class="title medium">¿QUÉ TIPO DE OBSERVADOR ERES?</h2></div>
       <div class="need-grid">
-        <div class="need-card"><div class="need-photo"><img src="assets/products/01-8x42.png" alt="Binocular Simmons 8×42 proporcionado por el usuario"></div><div class="need-name">Experiencia cómoda y estable</div><div class="need-spec">8×42</div><div class="need-desc">Campo más amplio y vista estable</div></div>
-        <div class="need-card"><div class="need-photo"><img src="assets/products/02-10x42.png" alt="Binocular Vortex 10×42 proporcionado por el usuario"></div><div class="need-name">Más detalle a distancia</div><div class="need-spec">10×42</div><div class="need-desc">Más aumento, formato versátil</div></div>
-        <div class="need-card"><div class="need-photo compact-graphic"><strong>VIAJA LIGERO</strong><span>PARA IR CONTIGO</span></div><div class="need-name">Llevarlo a todas partes</div><div class="need-spec">Compacto</div><div class="need-desc">Ligero para cada salida</div></div>
-        <div class="need-card"><div class="need-photo"><img src="assets/products/04-Leica.jpg" alt="Binocular Leica Ultravid 8×42 HD"></div><div class="need-name">Subir el nivel óptico</div><div class="need-spec">Premium</div><div class="need-desc">Óptica para ir más lejos</div></div>
+        <div class="need-card"><div class="need-photo"><img data-product="01" src="assets/products/01-8x42.png" alt="Binocular Simmons 8×42 proporcionado por el usuario"></div><div class="need-name">Experiencia cómoda y estable</div><div class="need-spec">8×42</div><div class="need-desc">Campo más amplio y vista estable</div></div>
+        <div class="need-card"><div class="need-photo"><img data-product="02" src="assets/products/02-10x42.png" alt="Binocular Vortex 10×42 proporcionado por el usuario"></div><div class="need-name">Más detalle a distancia</div><div class="need-spec">10×42</div><div class="need-desc">Más aumento, formato versátil</div></div>
+        <div class="need-card"><div class="need-photo"><img data-product="03" src="assets/products/03-vanguard-ed-8x42.png" alt="Binocular Vanguard ED 8×42"></div><div class="need-name">Llevarlo a todas partes</div><div class="need-spec">Compacto</div><div class="need-desc">Ligero para cada salida</div></div>
+        <div class="need-card"><div class="need-photo"><img data-product="04" data-layout-allow-overflow src="assets/products/04-Leica.jpg" alt="Binocular Leica Ultravid 8×42 HD"></div><div class="need-name">Subir el nivel óptico</div><div class="need-spec">Premium</div><div class="need-desc">Óptica para ir más lejos</div></div>
       </div>
       <p class="scene-two-axis">La mejor elección empieza por cómo y dónde observas.</p>
     </div>
@@ -124,7 +128,7 @@
   <section id="scene-3" class="clip scene" data-start="17" data-duration="6" data-track-index="0">
     <div class="scene-inner">
       <div class="scene-three-title"><div class="eyebrow">El momento de elegir</div><h2 class="title">ENTONCES… ¿CUÁL ES MEJOR?</h2></div>
-      <div class="versus" data-layout-ignore><div class="versus-card"><img class="product" src="assets/products/01-8x42.png" alt="Binocular Simmons"></div><span class="versus-mark">VS</span><div class="versus-card"><img class="product" src="assets/products/02-10x42.png" alt="Binocular Vortex"></div></div>
+      <div class="versus" data-layout-ignore><div class="versus-card"><img class="product" data-product="01" src="assets/products/01-8x42.png" alt="Binocular Simmons"></div><span class="versus-mark">VS</span><div class="versus-card"><img class="product" data-product="02" src="assets/products/02-10x42.png" alt="Binocular Vortex"></div></div>
       <div class="depends">DEPENDE DE TI.</div>
       <div class="choice-grid"><div class="choice-chip"><b>01</b> Qué quieres observar</div><div class="choice-chip"><b>02</b> Dónde lo usarás</div><div class="choice-chip"><b>03</b> Cuánto cargarás</div><div class="choice-chip"><b>04</b> Cuánto aumento necesitas</div></div>
       <div class="question-sticker"><span>Tu respuesta importa</span><strong>¿Para qué quieres tus binoculares?</strong><small>Aves · Viajes · Fauna · Naturaleza · Uso general</small></div>
@@ -134,7 +138,7 @@
   <section id="scene-4" class="clip scene" data-start="23" data-duration="7" data-track-index="0">
     <div class="scene-inner">
       <div class="scene-four-head"><div class="eyebrow">Tu próxima aventura empieza aquí</div><h2 class="title">HAY BINOCULARES PARA MUCHOS GUSTOS.</h2></div>
-      <div class="lineup" data-layout-ignore><div class="lineup-card"><img src="assets/products/01-8x42.png" alt="Binocular Simmons"></div><div class="lineup-card"><img src="assets/products/02-10x42.png" alt="Binocular Vortex"></div><div class="lineup-card compact-graphic"><strong>COMPACTO</strong></div><div class="lineup-card"><img src="assets/products/04-Leica.jpg" alt="Binocular Leica"></div></div>
+      <div class="lineup" data-layout-ignore><div class="lineup-card"><img data-product="01" src="assets/products/01-8x42.png" alt="Binocular Simmons"></div><div class="lineup-card"><img data-product="02" src="assets/products/02-10x42.png" alt="Binocular Vortex"></div><div class="lineup-card"><img data-product="03" src="assets/products/03-vanguard-ed-8x42.png" alt="Binocular Vanguard ED 8×42"></div><div class="lineup-card"><img data-product="04" src="assets/products/04-Leica.jpg" alt="Binocular Leica"></div></div>
       <p class="statement">PERO QUEREMOS ENCONTRAR <strong>EL TUYO.</strong></p>
       <div class="steps-card"><p class="write">Escríbenos <em>“BINOCULAR”</em> y cuéntanos:</p><div class="step"><b>1</b> Qué quieres observar</div><div class="step"><b>2</b> Si ya has usado binoculares</div><div class="step"><b>3</b> Qué esperas de tu próximo equipo</div></div>
       <p class="final-support">Nosotros te ayudamos a comparar opciones.</p>
