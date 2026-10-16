@@ -1,14 +1,16 @@
 # Videos de prueba — Monteadentro
 
-## Guía de binoculares (borrador)
+## Guía de binoculares — revisión 2
 
-- [Descargar video de 30 segundos](./BORRADOR-binoculares-30s.mp4)
-- [Ver resumen visual](./BORRADOR-binoculares-contacto.jpg)
+- [Descargar borrador 2: 30 segundos](./BORRADOR-2-binoculares-30s.mp4)
+- [Ver resumen visual de la revisión 2](./BORRADOR-2-contacto.jpg)
+- [Consultar el proyecto editable](./source/binoculares-30s/)
 
-Video vertical 1080 × 1920, 30 fps, con motion graphics, música y efectos de sonido. No usa HeyGen.
+Formato vertical 1080 × 1920, 30 fps. Incluye textos y productos más grandes, música funk original y barridos de sonido sincronizados. No usa HeyGen.
 
-**Pendiente para la versión final:** reemplazar las cuatro imágenes de referencia por los cuatro archivos originales PNG/JPG. Las imágenes que aparecen en el chat no llegaron como archivos editables al entorno, así que este borrador no garantiza fidelidad exacta de la forma o los logos de los productos. La caja de pregunta y el botón de mensaje son elementos visuales; el sticker interactivo debe añadirse en Instagram al publicar.
+**Pendiente:** colocar el archivo original del logo y sustituir las fotos de referencia por fotos oficiales de cuatro modelos verificados en monteadentro.com. El sitio aún no está habilitado en este entorno, por lo que este video es un borrador visual y no debe tomarse como selección de productos. La caja de pregunta es visual; el sticker interactivo se añade en Instagram.
 
-## Lanzamiento del sitio (prueba anterior)
+## Versiones anteriores
 
-- [Descargar video de 15 segundos](./monteadentro-prueba.mp4)
+- [Primer borrador de binoculares](./BORRADOR-binoculares-30s.mp4)
+- [Prueba del lanzamiento web](./monteadentro-prueba.mp4)
