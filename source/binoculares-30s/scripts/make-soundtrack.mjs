@@ -21,8 +21,13 @@ const burst = (t, start, length, fn) => {
 const bassPattern = [
   [0, 1], [.75, 1.5], [1.5, 1], [2, 1], [2.75, 2], [3.5, 1.5],
 ];
-const whooshes = [1.20, 1.48, 1.82, 5.78, 7.15, 9.55, 11.95, 14.35, 16.78, 18.12, 18.28, 22.78, 24.08, 24.35, 24.62, 24.85, 25.48];
+// Un barrido por movimiento principal. Evitar ráfagas superpuestas mantiene
+// la transición clara, especialmente en los altavoces de un teléfono.
+const whooshes = [1.20, 1.82, 5.78, 7.15, 9.55, 11.95, 14.35, 16.78, 18.12, 22.78, 24.08, 24.85, 25.48];
 const accents = [2.92, 6.05, 8.92, 11.34, 13.76, 17.05, 18.83, 20.72, 23.05, 26.17, 26.45, 26.73];
+let percussionAir = 0;
+let sweepAir = 0;
+let sweepLow = 0;
 
 for (let i = 0; i < frames; i++) {
   const t = i / rate;
@@ -32,6 +37,11 @@ for (let i = 0; i < frames; i++) {
   const beatIndex = Math.floor(t / beat);
   const beatTime = t - beatIndex * beat;
   const subTime = t - Math.floor(t / (beat / 2)) * beat / 2;
+  const noise = random();
+  percussionAir += (noise - percussionAir) * .22;
+  sweepAir += (noise - sweepAir) * .075;
+  sweepLow += (sweepAir - sweepLow) * .003;
+  const softSweepAir = sweepAir - sweepLow;
 
   // Bajo eléctrico sintético: fundamental y armónicos con ataque corto.
   let bass = 0;
@@ -59,23 +69,23 @@ for (let i = 0; i < frames; i++) {
     ? note(55 + 90 * Math.exp(-beatTime * 28), beatTime) * Math.exp(-beatTime * 24) * .28
     : 0;
   const snare = (kickBeat === 1 || kickBeat === 3)
-    ? (random() * .65 + note(190, beatTime) * .35) * Math.exp(-beatTime * 32) * .16
+    ? (percussionAir * .65 + note(190, beatTime) * .35) * Math.exp(-beatTime * 32) * .16
     : 0;
-  const hat = random() * Math.exp(-subTime * 90) * (Math.floor(t / (beat / 2)) % 2 ? .072 : .052);
+  const hat = percussionAir * Math.exp(-subTime * 90) * (Math.floor(t / (beat / 2)) % 2 ? .072 : .052);
 
   // Barridos audibles sincronizados con productos y cambios de escena.
   let whoosh = 0;
   for (const start of whooshes) {
-    whoosh += burst(t, start, .32, (d, u) => {
-      const shape = Math.sin(Math.PI * u);
-      const rising = note(420 + 1900 * u, d);
-      return (random() * .14 + rising * .045) * shape;
+    whoosh += burst(t, start, .42, (d, u) => {
+      const shape = Math.sin(Math.PI * u) ** 2;
+      const phase = 2 * Math.PI * (240 * d + 750 * d * d / .42);
+      return (softSweepAir * .32 + Math.sin(phase) * .019) * shape;
     });
   }
   let hit = 0;
   for (const start of accents) {
     hit += burst(t, start, .17, (d, u) =>
-      (note(120 - 50 * u, d) * .15 + random() * .055) * Math.exp(-u * 5)
+      (note(120 - 50 * u, d) * .15 + percussionAir * .035) * Math.exp(-u * 5)
     );
   }
 
