@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1080,height=1920">
+  <script src="assets/gsap.min.js"></script>
+  <style>
+    *{box-sizing:border-box}
+    html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#07182A;color:#fff;font-family:Arial,Helvetica,sans-serif}
+    #story{position:relative;width:1080px;height:1920px;overflow:hidden;background:#07182A}
+    .clip.scene{position:absolute;inset:0;width:1080px;height:1920px;overflow:hidden;background-color:#07182A}
+    .scene::before{content:"";position:absolute;width:1120px;height:1120px;border-radius:50%;left:420px;top:240px;background:radial-gradient(circle,#1D617258 0%,#1D617214 48%,#07182A00 72%)}
+    .scene::after{content:"";position:absolute;left:-80px;right:-80px;bottom:0;height:340px;background:#003B4D;clip-path:polygon(0 78%,12% 48%,24% 69%,37% 30%,52% 70%,68% 36%,82% 66%,100% 30%,100% 100%,0 100%);opacity:.38}
+    .scene-inner{position:relative;z-index:2;width:100%;height:100%;padding:150px 72px 164px;display:flex;flex-direction:column;gap:26px}
+    .brand-row{width:100%;display:flex;align-items:center;min-height:118px}
+    .brand-logo{display:block;width:116px;height:116px;object-fit:contain}
+    .eyebrow{color:#F6A800;font-size:26px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+    h1,h2,p{margin:0}
+    .title{font-size:88px;line-height:.99;letter-spacing:-.055em;font-weight:900;text-wrap:balance}
+    .title.medium{font-size:78px}
+    .orange{color:#F25A00}.gold{color:#F6A800}
+    .support{font-size:35px;line-height:1.23;color:#DFE9EB;font-weight:600}
+    .small{font-size:26px;line-height:1.26;color:#D1E0E1}
+    .footer-rail{margin-top:auto;display:flex;align-items:center;gap:19px;color:#FFFFFF;font-size:38px;font-weight:900;letter-spacing:.015em}
+    .footer-rail::before{content:"";width:62px;height:6px;background:#F25A00;border-radius:5px}
+    .product{display:block;width:100%;height:100%;object-fit:contain;filter:none;mix-blend-mode:normal}
+
+    /* 01 — hook */
+    #scene-1{background:#07212A}
+    .scene-one-title{margin-top:72px;max-width:880px}
+    .question-mark{color:#F6A800}
+    .tabletop{position:relative;margin:26px 0 0;height:585px;flex:0 0 585px;border-radius:42px;background:radial-gradient(ellipse at 50% 90%,#446457 0%,#1A4447 46%,#0D2C35 75%);box-shadow:inset 0 0 0 2px #79A79A66,0 30px 90px #0004;overflow:hidden}
+    .tabletop::after{content:"";position:absolute;left:80px;right:80px;bottom:52px;height:40px;border-radius:50%;background:#00182088;filter:blur(20px)}
+    .product-tile{position:absolute;width:425px;height:320px;background:#fff;border-radius:32px;padding:10px;box-shadow:0 28px 45px #00192277;overflow:hidden}
+    .tile-one{left:38px;top:125px;transform:rotate(-10deg)}
+    .tile-two{right:38px;top:48px;transform:rotate(8deg)}
+    .tile-three{left:350px;top:280px;width:400px;height:278px;transform:rotate(-2deg)}
+    .answer-tag{align-self:flex-start;background:#F25A00;border-radius:16px;padding:16px 28px;font-size:39px;font-weight:900;letter-spacing:.03em;transform:rotate(-2deg);box-shadow:0 14px 24px #00192266}
+    .axis{font-size:39px;line-height:1.16;font-weight:800;max-width:895px}
+    .axis strong{color:#F6A800}
+
+    /* 02 — options */
+    #scene-2{background:#083039}
+    .scene-two-head{margin-top:45px;display:flex;flex-direction:column;gap:16px}
+    .need-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:490px 490px;gap:18px;margin-top:22px}
+    .need-card{position:relative;background:#fff;color:#071425;border-radius:32px;padding:19px 24px 22px;display:flex;flex-direction:column;box-shadow:0 24px 45px #00182040;overflow:hidden}
+    .need-card::before{content:"";position:absolute;left:0;top:0;width:100%;height:12px;background:#F25A00}
+    .need-photo{height:260px;flex:0 0 260px;display:flex;justify-content:center;align-items:center;overflow:hidden}
+    .need-photo img{width:100%;height:100%;object-fit:contain;object-position:center}
+    .need-name{font-size:30px;font-weight:900;line-height:1.02;letter-spacing:-.025em;min-height:62px}
+    .need-spec{font-size:52px;line-height:1;font-weight:900;color:#003B4D;margin:7px 0}
+    .need-desc{font-size:24px;line-height:1.1;color:#315560;font-weight:600}
+    .scene-two-axis{margin-top:auto;border-left:7px solid #F6A800;padding-left:22px;font-size:34px;font-weight:800;line-height:1.2}
+
+    /* 03 — choice */
+    #scene-3{background:#092832}
+    .scene-three-title{margin-top:50px}
+    .versus{display:flex;align-items:center;gap:20px;min-height:390px;margin:28px 0 10px}
+    .versus-card{width:calc(50% - 24px);height:365px;padding:15px;background:#fff;border-radius:31px;box-shadow:0 25px 55px #00182065}
+    .versus-mark{font-size:34px;font-weight:900;color:#F25A00}
+    .depends{background:#F6A800;color:#07182A;border-radius:24px;padding:22px 30px;font-size:71px;line-height:1;font-weight:900;letter-spacing:-.045em;align-self:flex-start}
+    .choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:20px}
+    .choice-chip{min-height:125px;padding:25px 24px;border:2px solid #8EB8B6;border-radius:23px;background:#003B4D;font-size:30px;line-height:1.1;font-weight:800;display:flex;align-items:center;gap:16px}
+    .choice-chip b{color:#F6A800;font-size:38px}
+    .question-sticker{margin-top:auto;border:3px solid #F6A800;border-radius:29px;padding:24px 30px;background:#FFFFFF;color:#07182A;box-shadow:0 18px 40px #0005}
+    .question-sticker span{display:block;color:#F25A00;font-size:23px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px}
+    .question-sticker strong{display:block;font-size:37px;line-height:1.12}
+    .question-sticker small{display:block;font-size:23px;color:#365766;font-weight:700;margin-top:12px}
+
+    /* 04 — CTA */
+    #scene-4{background:#092F38}
+    .scene-four-head{margin-top:37px;display:flex;flex-direction:column;gap:17px}
+    .scene-four-head .title{font-size:74px}
+    .lineup{display:flex;gap:14px;margin:27px 0 5px;height:230px;flex:0 0 230px}
+    .lineup-card{height:210px;width:25%;background:#fff;border-radius:25px;padding:7px;box-shadow:0 14px 30px #00182055}
+    .lineup-card:nth-child(2){transform:translateY(20px)}
+    .lineup-card:nth-child(4){transform:translateY(20px)}
+    .lineup-card img{width:100%;height:100%;object-fit:contain}
+    .statement{font-size:42px;line-height:1.11;font-weight:800;padding:25px 28px;border-radius:23px;background:#003B4D;border:2px solid #5B9A9A}
+    .statement strong{color:#F6A800}
+    .steps-card{background:#fff;color:#07182A;border-radius:32px;padding:30px 32px;margin-top:3px;box-shadow:0 22px 45px #00182055}
+    .steps-card .write{font-size:45px;font-weight:900;line-height:1.08;letter-spacing:-.035em}
+    .steps-card .write em{font-style:normal;color:#F25A00}
+    .step{display:flex;gap:18px;align-items:flex-start;font-size:29px;font-weight:700;line-height:1.12;margin-top:18px}
+    .step b{font-size:24px;flex:0 0 36px;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:#F25A00;color:#fff}
+    .final-support{font-size:44px;line-height:1.15;font-weight:900;text-align:center;margin-top:22px;color:#FFFFFF;background:#F25A00;border-radius:24px;padding:25px 28px;box-shadow:0 16px 34px #00182066}
+
+    .transition{position:absolute;inset:-100px;z-index:50;background:#F25A00;opacity:0;pointer-events:none;will-change:clip-path,transform,opacity}
+    #transition-2{background:#003B4D}#transition-3{background:#3D765A}
+  </style>
+</head>
+<body>
+<main id="story" data-composition-id="monteadentro-binoculares-30s" data-width="1080" data-height="1920" data-start="0" data-duration="30">
+  <section id="scene-1" class="clip scene" data-start="0" data-duration="6" data-track-index="0">
+    <div class="scene-inner">
+      <div class="brand-row"><!-- El logo original se insertará aquí cuando esté disponible como archivo. --></div>
+      <div class="scene-one-title"><div class="eyebrow">Guía rápida para explorar</div><h1 class="title">¿TODOS LOS BINOCULARES SON PARA LO MISMO<span class="question-mark">?</span></h1></div>
+      <div class="tabletop" data-layout-ignore>
+        <div class="product-tile tile-one"><img class="product" src="assets/binocular-1-preview-trim.png" alt="Binocular 1"></div>
+        <div class="product-tile tile-two"><img class="product" src="assets/binocular-2-preview-trim.png" alt="Binocular 2"></div>
+        <div class="product-tile tile-three"><img class="product" src="assets/binocular-3-preview-trim.png" alt="Binocular 3"></div>
+      </div>
+      <div class="answer-tag">NO EXACTAMENTE.</div>
+      <p class="axis">No existe uno perfecto para todos. <strong>Existe el que mejor se adapta a ti.</strong></p>
+      <div class="footer-rail">Te ayudamos a encontrarlo</div>
+    </div>
+  </section>
+
+  <section id="scene-2" class="clip scene" data-start="6" data-duration="11" data-track-index="0">
+    <div class="scene-inner">
+      <div class="brand-row"><!-- Logo original pendiente. --></div>
+      <div class="scene-two-head"><div class="eyebrow">Distintas formas de mirar</div><h2 class="title medium">¿QUÉ TIPO DE OBSERVADOR ERES?</h2></div>
+      <div class="need-grid">
+        <div class="need-card"><div class="need-photo"><img src="assets/binocular-2-preview-trim.png" alt="Imagen de referencia, modelo pendiente de verificación"></div><div class="need-name">Experiencia cómoda y estable</div><div class="need-spec">8×42</div><div class="need-desc">Campo más amplio y vista estable</div></div>
+        <div class="need-card"><div class="need-photo"><img src="assets/binocular-1-preview-trim.png" alt="Imagen de referencia, modelo pendiente de verificación"></div><div class="need-name">Más detalle a distancia</div><div class="need-spec">10×42</div><div class="need-desc">Más aumento, formato versátil</div></div>
+        <div class="need-card"><div class="need-photo"><img src="assets/binocular-3-preview-trim.png" alt="Imagen de referencia, modelo pendiente de verificación"></div><div class="need-name">Llevarlo a todas partes</div><div class="need-spec">Compacto</div><div class="need-desc">Ligero para cada salida</div></div>
+        <div class="need-card"><div class="need-photo"><img src="assets/binocular-4-preview-trim.png" alt="Imagen de referencia, modelo pendiente de verificación"></div><div class="need-name">Subir el nivel óptico</div><div class="need-spec">Premium</div><div class="need-desc">Óptica para ir más lejos</div></div>
+      </div>
+      <p class="scene-two-axis">La mejor elección empieza por cómo y dónde observas.</p>
+    </div>
+  </section>
+
+  <section id="scene-3" class="clip scene" data-start="17" data-duration="6" data-track-index="0">
+    <div class="scene-inner">
+      <div class="brand-row"><!-- Logo original pendiente. --></div>
+      <div class="scene-three-title"><div class="eyebrow">El momento de elegir</div><h2 class="title">ENTONCES… ¿CUÁL ES MEJOR?</h2></div>
+      <div class="versus" data-layout-ignore><div class="versus-card"><img class="product" src="assets/binocular-2-preview-trim.png" alt="Binocular de referencia"></div><span class="versus-mark">VS</span><div class="versus-card"><img class="product" src="assets/binocular-1-preview-trim.png" alt="Binocular de referencia"></div></div>
+      <div class="depends">DEPENDE DE TI.</div>
+      <div class="choice-grid"><div class="choice-chip"><b>01</b> Qué quieres observar</div><div class="choice-chip"><b>02</b> Dónde lo usarás</div><div class="choice-chip"><b>03</b> Cuánto cargarás</div><div class="choice-chip"><b>04</b> Cuánto aumento necesitas</div></div>
+      <div class="question-sticker"><span>Tu respuesta importa</span><strong>¿Para qué quieres tus binoculares?</strong><small>Aves · Viajes · Fauna · Naturaleza · Uso general</small></div>
+    </div>
+  </section>
+
+  <section id="scene-4" class="clip scene" data-start="23" data-duration="7" data-track-index="0">
+    <div class="scene-inner">
+      <div class="brand-row"><!-- Logo original pendiente. --></div>
+      <div class="scene-four-head"><div class="eyebrow">Tu próxima aventura empieza aquí</div><h2 class="title">HAY BINOCULARES PARA MUCHOS GUSTOS.</h2></div>
+      <div class="lineup" data-layout-ignore><div class="lineup-card"><img src="assets/binocular-1-preview-trim.png" alt="Binocular de referencia"></div><div class="lineup-card"><img src="assets/binocular-2-preview-trim.png" alt="Binocular de referencia"></div><div class="lineup-card"><img src="assets/binocular-3-preview-trim.png" alt="Binocular de referencia"></div><div class="lineup-card"><img src="assets/binocular-4-preview-trim.png" alt="Binocular de referencia"></div></div>
+      <p class="statement">PERO QUEREMOS ENCONTRAR <strong>EL TUYO.</strong></p>
+      <div class="steps-card"><p class="write">Escríbenos <em>“BINOCULAR”</em> y cuéntanos:</p><div class="step"><b>1</b> Qué quieres observar</div><div class="step"><b>2</b> Si ya has usado binoculares</div><div class="step"><b>3</b> Qué esperas de tu próximo equipo</div></div>
+      <p class="final-support">Nosotros te ayudamos a comparar opciones.</p>
+    </div>
+  </section>
+
+  <div id="transition-1" class="transition" data-layout-ignore></div>
+  <div id="transition-2" class="transition" data-layout-ignore></div>
+  <div id="transition-3" class="transition" data-layout-ignore></div>
+  <audio id="soundtrack" src="assets/soundtrack.wav" data-start="0" data-duration="30" data-track-index="10" data-volume="1"></audio>
+</main>
+<script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({paused:true});
+  const enter = (selector, props, at) => tl.from(selector,{duration:.55,ease:'power3.out',...props},at);
+
+  enter('#scene-1 .brand-row',{y:-40,opacity:0},.15);
+  enter('#scene-1 .eyebrow',{x:-70,opacity:0,duration:.45,ease:'expo.out'},.38);
+  enter('#scene-1 .title',{y:85,opacity:0,duration:.72,ease:'back.out(1.2)'},.47);
+  enter('#scene-1 .tabletop',{scale:.88,opacity:0,duration:.65,ease:'power2.out'},1.05);
+  enter('#scene-1 .tile-one',{x:-330,rotation:-26,opacity:0,duration:.65,ease:'back.out(1.5)'},1.22);
+  enter('#scene-1 .tile-two',{x:350,rotation:22,opacity:0,duration:.7,ease:'power4.out'},1.48);
+  enter('#scene-1 .tile-three',{y:310,rotation:8,opacity:0,duration:.62,ease:'expo.out'},1.82);
+  enter('#scene-1 .answer-tag',{scale:.55,rotation:-10,opacity:0,duration:.46,ease:'back.out(2)'},2.92);
+  enter('#scene-1 .axis',{y:52,opacity:0,duration:.58,ease:'power3.out'},3.54);
+  enter('#scene-1 .footer-rail',{x:-60,opacity:0,duration:.55,ease:'power2.out'},4.25);
+
+  enter('#scene-2 .brand-row',{y:-45,opacity:0},6.15);
+  enter('#scene-2 .eyebrow',{x:-60,opacity:0,duration:.4,ease:'expo.out'},6.35);
+  enter('#scene-2 .title',{y:75,opacity:0,duration:.68,ease:'back.out(1.15)'},6.48);
+  [7.15,9.55,11.95,14.35].forEach((at,i)=>{
+    const card = `#scene-2 .need-card:nth-child(${i+1})`;
+    enter(card,{y:115,scale:.78,opacity:0,duration:.66,ease:'back.out(1.35)'},at);
+    enter(`${card} .need-photo`,{scale:.62,opacity:0,duration:.48,ease:'power2.out'},at+.18);
+    enter(`${card} .need-spec`,{x:42,opacity:0,duration:.38,ease:'expo.out'},at+.30);
+  });
+  enter('#scene-2 .scene-two-axis',{x:-50,opacity:0,duration:.55,ease:'power3.out'},15.45);
+
+  enter('#scene-3 .brand-row',{y:-45,opacity:0},17.15);
+  enter('#scene-3 .eyebrow',{x:-60,opacity:0,duration:.42,ease:'expo.out'},17.31);
+  enter('#scene-3 .title',{y:68,opacity:0,duration:.62,ease:'back.out(1.1)'},17.42);
+  enter('#scene-3 .versus-card:first-child',{x:-290,rotation:-9,opacity:0,duration:.65,ease:'power4.out'},18.12);
+  enter('#scene-3 .versus-card:last-child',{x:290,rotation:9,opacity:0,duration:.65,ease:'power4.out'},18.28);
+  enter('#scene-3 .versus-mark',{scale:.3,opacity:0,duration:.4,ease:'back.out(2)'},18.58);
+  enter('#scene-3 .depends',{scale:.68,opacity:0,duration:.48,ease:'back.out(1.55)'},18.83);
+  tl.from('#scene-3 .choice-chip',{y:55,opacity:0,stagger:.16,duration:.46,ease:'power3.out'},19.35);
+  enter('#scene-3 .question-sticker',{y:95,opacity:0,duration:.62,ease:'expo.out'},20.72);
+
+  enter('#scene-4 .brand-row',{y:-40,opacity:0},23.15);
+  enter('#scene-4 .eyebrow',{x:-55,opacity:0,duration:.42,ease:'expo.out'},23.32);
+  enter('#scene-4 .title',{y:70,opacity:0,duration:.65,ease:'back.out(1.18)'},23.43);
+  tl.from('#scene-4 .lineup-card',{y:135,opacity:0,scale:.78,stagger:.12,duration:.58,ease:'power3.out'},24.08);
+  enter('#scene-4 .statement',{scale:.84,opacity:0,duration:.55,ease:'back.out(1.4)'},24.85);
+  enter('#scene-4 .steps-card',{y:105,opacity:0,duration:.62,ease:'expo.out'},25.48);
+  tl.from('#scene-4 .step',{x:65,opacity:0,stagger:.28,duration:.42,ease:'power2.out'},26.17);
+  enter('#scene-4 .final-support',{y:35,opacity:0,duration:.45,ease:'power2.out'},27.22);
+
+  function wipe(selector,at){
+    tl.fromTo(selector,{opacity:1,clipPath:'inset(100% 0 0 0)',yPercent:0},{opacity:1,clipPath:'inset(0% 0 0 0)',duration:.21,ease:'power4.in',immediateRender:false},at);
+    tl.to(selector,{yPercent:-110,duration:.28,ease:'expo.in',immediateRender:false},at+.21);
+    tl.set(selector,{opacity:0},at+.49);
+  }
+  wipe('#transition-1',5.78);
+  wipe('#transition-2',16.78);
+  wipe('#transition-3',22.78);
+  window.__timelines['monteadentro-binoculares-30s']=tl;
+</script>
+</body>
+</html>
