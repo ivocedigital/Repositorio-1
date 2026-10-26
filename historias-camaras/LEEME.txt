@@ -9,4 +9,4 @@ Historia 2: dejar libre el área inferior para agregar en Instagram/Facebook una
 - Retratos y personas
 - Foto y video
 
-Las historias 2 y 3 usan las fotografías compartidas por el usuario. La historia 4 usa una puesta en escena creada a partir de las referencias de producto Sony, Canon y Nikon compartidas por el usuario. No se muestran precios ni cantidades.
+Las historias 1, 2 y 3 usan las fotografías compartidas por el usuario. La historia 4 usa recortes de las fotos originales de producto Sony, Canon y Nikon sobre fondo verde claro sólido. No se muestran precios ni cantidades.
